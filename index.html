@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wednesday Wars — Chapter 1 Vocabulary</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background-color: #f4e9d8;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f4e9d8"/><path d="M0 0 L100 100 M100 0 L0 100" stroke="%23e0d0b8" stroke-width="0.5" opacity="0.3"/></svg>');
+      color: #3b2e1e;
+      padding: 20px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background-color: #fffaf0;
+      border: 3px solid #8b6f4e;
+      border-radius: 12px;
+      box-shadow: 8px 8px 0 #c4a882, 12px 12px 20px rgba(0,0,0,0.2);
+      padding: 30px 25px;
+      position: relative;
+    }
+
+    .container::before {
+      content: "✏️ September 1967 ✏️";
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #5a7a5a;
+      color: #f4e9d8;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      padding: 6px 24px;
+      border-radius: 20px;
+      border: 2px solid #3b5a3b;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #5a3e1e;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 0 #e0d0b8;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #8b6f4e;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+
+    .book-info {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #6b5a4a;
+      margin-bottom: 25px;
+      border-bottom: 1px dashed #c4a882;
+      padding-bottom: 15px;
+    }
+
+    .book-info strong { color: #5a3e1e; }
+
+    .category { margin-bottom: 30px; }
+
+    .category h2 {
+      font-size: 1.4rem;
+      color: #5a3e1e;
+      border-left: 6px solid #8b6f4e;
+      padding-left: 12px;
+      margin-bottom: 15px;
+    }
+
+    .word-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .word-card {
+      background: #fdf6ec;
+      border: 2px solid #d4c0a8;
+      border-radius: 10px;
+      padding: 14px 16px;
+      transition: all 0.2s ease;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 #e0d0b8;
+      user-select: none;
+    }
+
+    .word-card:hover {
+      border-color: #8b6f4e;
+      box-shadow: 4px 4px 0 #c4a882;
+      transform: translateY(-2px);
+    }
+
+    .word-card.revealed {
+      background: #f0e6d6;
+      border-color: #8b6f4e;
+    }
+
+    .word-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .word-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #3b2e1e;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.5px;
+    }
+
+    .speak-btn {
+      background: #8b6f4e;
+      border: none;
+      color: #fffaf0;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      box-shadow: 2px 2px 0 #5a3e1e;
+    }
+
+    .speak-btn:hover {
+      background: #5a3e1e;
+      transform: scale(1.1);
+    }
+
+    .speak-btn:active { transform: scale(0.95); }
+
+    .definition {
+      font-size: 0.95rem;
+      color: #4a3a2a;
+      margin-bottom: 4px;
+      font-style: italic;
+    }
+
+    .translation {
+      font-size: 1rem;
+      color: #8b4513;
+      font-weight: bold;
+      margin-bottom: 4px;
+      display: none;
+      padding: 4px 8px;
+      background: #f0e6d6;
+      border-radius: 6px;
+      border-left: 4px solid #8b6f4e;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .translation.visible { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .collocations {
+      font-size: 0.85rem;
+      color: #6b5a4a;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dotted #d4c0a8;
+    }
+
+    .collocations span {
+      display: inline-block;
+      background: #e8dcc8;
+      padding: 1px 8px;
+      border-radius: 12px;
+      margin: 2px 3px 2px 0;
+      font-size: 0.8rem;
+      color: #5a3e1e;
+    }
+
+    .click-hint {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #8b6f4e;
+      margin-bottom: 18px;
+      font-style: italic;
+      background: #f0e6d6;
+      padding: 8px;
+      border-radius: 20px;
+      border: 1px dashed #c4a882;
+    }
+
+    .toggle-all-btn {
+      display: block;
+      margin: 20px auto 10px;
+      background: #5a7a5a;
+      color: #f4e9d8;
+      border: 2px solid #3b5a3b;
+      padding: 10px 24px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      box-shadow: 3px 3px 0 #3b5a3b;
+    }
+
+    .toggle-all-btn:hover {
+      background: #3b5a3b;
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 #2a3e2a;
+    }
+
+    .toggle-all-btn:active {
+      transform: translateY(0);
+      box-shadow: 2px 2px 0 #2a3e2a;
+    }
+
+    .tasks-section {
+      margin-top: 40px;
+      border-top: 3px double #c4a882;
+      padding-top: 25px;
+    }
+
+    .tasks-section h2 {
+      font-size: 1.6rem;
+      color: #5a3e1e;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .task-block {
+      background: #fdf6ec;
+      border: 2px solid #d4c0a8;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-bottom: 18px;
+      box-shadow: 3px 3px 0 #e0d0b8;
+    }
+
+    .task-block h3 {
+      font-size: 1.15rem;
+      color: #5a3e1e;
+      margin-bottom: 10px;
+    }
+
+    .task-block ol, .task-block ul {
+      padding-left: 22px;
+      color: #4a3a2a;
+    }
+
+    .task-block li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 20px 12px; }
+      h1 { font-size: 1.5rem; }
+      .word-grid { grid-template-columns: 1fr; }
+      .word-title { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📖 The Wednesday Wars</h1>
+    <p class="subtitle">Vocabulary — Chapter 1: September</p>
+    <p class="book-info">by <strong>Gary D. Schmidt</strong> · click any card to show/hide the Russian translation · 🔊 to listen</p>
+
+    <div class="click-hint">👆 Click any word card to show or hide the Russian translation</div>
+
+    <button class="toggle-all-btn" id="toggleAllBtn">👁 Show all translations</button>
+
+    <!-- ===== PEOPLE & PLACES ===== -->
+    <div class="category">
+      <h2>👥 People &amp; Places</h2>
+      <div class="word-grid">
+
+        <div class="word-card" data-word="Presbyterian">
+          <div class="word-header">
+            <span class="word-title">Presbyterian</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">a Protestant Christian denomination</div>
+          <div class="translation">пресвитерианин, пресвитерианский</div>
+          <div class="collocations">
+            <span>Presbyterian church</span>
+            <span>Presbyterian minister</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="rabbi">
+          <div class="word-header">
+            <span class="word-title">rabbi</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">a Jewish religious leader</div>
+          <div class="translation">раввин</div>
+          <div class="collocations">
+            <span>ask the rabbi</span>
+            <span>the rabbi's advice</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="nun">
+          <div class="word-header">
+            <span class="word-title">nun</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">a woman who is a member of a religious order</div>
+          <div class="translation">монахиня</div>
+          <div class="collocations">
+            <span>a Catholic nun</span>
+            <span>become a nun</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="Vietnam">
+          <div class="word-header">
+            <span class="word-title">Vietnam</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">country in Southeast Asia; site of a war in the 1960s–70s</div>
+          <div class="translation">Вьетнам</div>
+          <div class="collocations">
+            <span>the Vietnam War</span>
+            <span>fight in Vietnam</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="Camillo Junior High">
+          <div class="word-header">
+            <span class="word-title">Camillo Junior High</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">the school Holling attends</div>
+          <div class="translation">средняя школа Камилло</div>
+          <div class="collocations">
+            <span>attend Camillo Junior High</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="Long Island">
+          <div class="word-header">
+            <span class="word-title">Long Island</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">a place in New York (where the story is set)</div>
+          <div class="translation">Лонг-Айленд</div>
+          <div class="collocations">
+            <span>on Long Island</span>
+            <span>Long Island suburb</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== VERBS ===== -->
+    <div class="category">
+      <h2>🏃 Verbs</h2>
+      <div class="word-grid">
+
+        <div class="word-card" data-word="assign">
+          <div class="word-header">
+            <span class="word-title">to assign</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to give someone a task or job</div>
+          <div class="translation">назначать, поручать</div>
+          <div class="collocations">
+            <span>assign homework</span>
+            <span>assign a task</span>
+            <span>assign a seat</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="betray">
+          <div class="word-header">
+            <span class="word-title">to betray</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to be disloyal to someone</div>
+          <div class="translation">предавать</div>
+          <div class="collocations">
+            <span>betray a friend</span>
+            <span>betray a trust</span>
+            <span>feel betrayed</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="clench">
+          <div class="word-header">
+            <span class="word-title">to clench</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to close tightly (fists, teeth)</div>
+          <div class="translation">сжимать</div>
+          <div class="collocations">
+            <span>clench one's fists</span>
+            <span>clench one's teeth</span>
+            <span>clench one's jaw</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="mutter">
+          <div class="word-header">
+            <span class="word-title">to mutter</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to speak quietly and unclearly</div>
+          <div class="translation">бормотать</div>
+          <div class="collocations">
+            <span>mutter under one's breath</span>
+            <span>mutter a reply</span>
+            <span>mutter to oneself</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="smirk">
+          <div class="word-header">
+            <span class="word-title">to smirk</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to smile in an annoying, self-satisfied way</div>
+          <div class="translation">ухмыляться</div>
+          <div class="collocations">
+            <span>smirk at someone</span>
+            <span>a smug smirk</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="flinch">
+          <div class="word-header">
+            <span class="word-title">to flinch</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to make a small movement because of fear or pain</div>
+          <div class="translation">вздрагивать, морщиться</div>
+          <div class="collocations">
+            <span>flinch at the sound</span>
+            <span>flinch away</span>
+            <span>without flinching</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="insist">
+          <div class="word-header">
+            <span class="word-title">to insist</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to say firmly that something must happen</div>
+          <div class="translation">настаивать</div>
+          <div class="collocations">
+            <span>insist on something</span>
+            <span>insist that...</span>
+            <span>firmly insist</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="pretend">
+          <div class="word-header">
+            <span class="word-title">to pretend</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to act as if something is true when it is not</div>
+          <div class="translation">притворяться</div>
+          <div class="collocations">
+            <span>pretend to be asleep</span>
+            <span>pretend not to notice</span>
+            <span>pretend that...</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="escape">
+          <div class="word-header">
+            <span class="word-title">to escape</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to get away from a place or situation</div>
+          <div class="translation">убегать, избегать</div>
+          <div class="collocations">
+            <span>escape from school</span>
+            <span>escape punishment</span>
+            <span>a narrow escape</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== ADJECTIVES ===== -->
+    <div class="category">
+      <h2>🎨 Adjectives</h2>
+      <div class="word-grid">
+
+        <div class="word-card" data-word="furious">
+          <div class="word-header">
+            <span class="word-title">furious</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">extremely angry</div>
+          <div class="translation">взбешённый, в ярости</div>
+          <div class="collocations">
+            <span>furious with someone</span>
+            <span>furious about something</span>
+            <span>absolutely furious</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="reluctant">
+          <div class="word-header">
+            <span class="word-title">reluctant</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">not willing to do something</div>
+          <div class="translation">неохотный, не желающий</div>
+          <div class="collocations">
+            <span>reluctant to agree</span>
+            <span>a reluctant smile</span>
+            <span>be reluctant to do smth</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="awkward">
+          <div class="word-header">
+            <span class="word-title">awkward</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">uncomfortable or embarrassing</div>
+          <div class="translation">неловкий, неуклюжий</div>
+          <div class="collocations">
+            <span>an awkward silence</span>
+            <span>an awkward moment</span>
+            <span>feel awkward</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="stern">
+          <div class="word-header">
+            <span class="word-title">stern</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">serious and strict</div>
+          <div class="translation">строгий, суровый</div>
+          <div class="collocations">
+            <span>a stern look</span>
+            <span>a stern voice</span>
+            <span>a stern teacher</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="sarcastic">
+          <div class="word-header">
+            <span class="word-title">sarcastic</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">saying the opposite of what you mean, to mock</div>
+          <div class="translation">саркастичный</div>
+          <div class="collocations">
+            <span>a sarcastic remark</span>
+            <span>a sarcastic tone</span>
+            <span>be sarcastic about smth</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="unfair">
+          <div class="word-header">
+            <span class="word-title">unfair</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">not just or reasonable</div>
+          <div class="translation">несправедливый</div>
+          <div class="collocations">
+            <span>unfair treatment</span>
+            <span>an unfair decision</span>
+            <span>it's unfair that...</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="loyal">
+          <div class="word-header">
+            <span class="word-title">loyal</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">always supporting someone</div>
+          <div class="translation">верный, преданный</div>
+          <div class="collocations">
+            <span>a loyal friend</span>
+            <span>remain loyal to someone</span>
+            <span>loyal support</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== NOUNS ===== -->
+    <div class="category">
+      <h2>📦 Nouns</h2>
+      <div class="word-grid">
+
+        <div class="word-card" data-word="bar mitzvah">
+          <div class="word-header">
+            <span class="word-title">bar mitzvah</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">a Jewish ceremony for boys at age 13</div>
+          <div class="translation">бар-мицва</div>
+          <div class="collocations">
+            <span>celebrate a bar mitzvah</span>
+            <span>a bar mitzvah ceremony</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="confession">
+          <div class="word-header">
+            <span class="word-title">confession</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">admitting you did something wrong</div>
+          <div class="translation">признание, исповедь</div>
+          <div class="collocations">
+            <span>make a confession</span>
+            <span>a full confession</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="misfortune">
+          <div class="word-header">
+            <span class="word-title">misfortune</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">bad luck</div>
+          <div class="translation">несчастье, неудача</div>
+          <div class="collocations">
+            <span>a piece of misfortune</span>
+            <span>suffer misfortune</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="cinnamon">
+          <div class="word-header">
+            <span class="word-title">cinnamon</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">a spice used in baking</div>
+          <div class="translation">корица</div>
+          <div class="collocations">
+            <span>cinnamon rolls</span>
+            <span>a pinch of cinnamon</span>
+            <span>cinnamon toast</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="errand">
+          <div class="word-header">
+            <span class="word-title">errand</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">a short trip to do a small task</div>
+          <div class="translation">поручение</div>
+          <div class="collocations">
+            <span>run an errand</span>
+            <span>go on an errand</span>
+            <span>a quick errand</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="shame">
+          <div class="word-header">
+            <span class="word-title">shame</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">a feeling of embarrassment or guilt</div>
+          <div class="translation">стыд</div>
+          <div class="collocations">
+            <span>a sense of shame</span>
+            <span>feel shame</span>
+            <span>bring shame on someone</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="resentment">
+          <div class="word-header">
+            <span class="word-title">resentment</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">angry feelings because of unfair treatment</div>
+          <div class="translation">обида, негодование</div>
+          <div class="collocations">
+            <span>feel resentment</span>
+            <span>deep resentment</span>
+            <span>resentment toward someone</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== USEFUL EXPRESSIONS ===== -->
+    <div class="category">
+      <h2>💬 Useful Expressions</h2>
+      <div class="word-grid">
+
+        <div class="word-card" data-word="to be in trouble">
+          <div class="word-header">
+            <span class="word-title">to be in trouble</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to be in a difficult situation (often because of bad behavior)</div>
+          <div class="translation">попасть в неприятности</div>
+          <div class="collocations">
+            <span>He was in trouble with Mrs. Baker.</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="to make a deal">
+          <div class="word-header">
+            <span class="word-title">to make a deal</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to reach an agreement</div>
+          <div class="translation">заключить сделку / договориться</div>
+          <div class="collocations">
+            <span>They made a deal about the Wednesdays.</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="to keep a secret">
+          <div class="word-header">
+            <span class="word-title">to keep a secret</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">not to tell anyone</div>
+          <div class="translation">хранить секрет</div>
+          <div class="collocations">
+            <span>Can you keep a secret?</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="to get along with">
+          <div class="word-header">
+            <span class="word-title">to get along with</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to have a good relationship with</div>
+          <div class="translation">ладить с кем-то</div>
+          <div class="collocations">
+            <span>He doesn't get along with his sister.</span>
+          </div>
+        </div>
+
+        <div class="word-card" data-word="to be stuck with">
+          <div class="word-header">
+            <span class="word-title">to be stuck with</span>
+            <button class="speak-btn" title="Listen">🔊</button>
+          </div>
+          <div class="definition">to have no choice but to deal with someone/something</div>
+          <div class="translation">остаться с кем-то/чем-то (поневоле)</div>
+          <div class="collocations">
+            <span>He was stuck with Mrs. Baker every Wednesday.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== TASKS ===== -->
+    <div class="tasks-section">
+      <h2>✏️ After-Reading Tasks</h2>
+
+      <div class="task-block">
+        <h3>A. Comprehension Questions</h3>
+        <ol>
+          <li>Who is the narrator of the story? How old is he?</li>
+          <li>Why does Holling have to stay after school with Mrs. Baker on Wednesdays?</li>
+          <li>What do the other students do on Wednesday afternoons? Why does this make Holling feel left out?</li>
+          <li>What is Mrs. Baker's attitude toward Holling at first? Find a quotation to support your answer.</li>
+          <li>What does Mrs. Baker decide to do with Holling during their Wednesday afternoons?</li>
+          <li>How does Holling feel about this plan? Why?</li>
+          <li>What does Holling's father do for a living? How does this affect Holling's life?</li>
+          <li>Describe the relationship between Holling and his sister. Give one example from the chapter.</li>
+          <li>What is happening in the world outside Holling's school in September 1967? How does this affect the characters?</li>
+          <li>Why do you think the author chose the title <em>The Wednesday Wars</em>?</li>
+        </ol>
+      </div>
+
+      <div class="task-block">
+        <h3>B. Vocabulary Practice</h3>
+        <p><strong>Fill in the blanks with the correct word from the list:</strong><br>
+        <em>(furious, reluctant, bar mitzvah, mutter, smirk, errand, betray, clench)</em></p>
+        <ol>
+          <li>Holling's sister was __________ when she found out he had to stay after school.</li>
+          <li>Mrs. Baker was __________ to let Holling just sit and do nothing.</li>
+          <li>Danny's __________ was coming up, and he was nervous about it.</li>
+          <li>Holling had to __________ his fists to stop himself from showing his anger.</li>
+          <li>Mrs. Baker didn't __________ — she spoke clearly and directly.</li>
+          <li>The boys would __________ when they thought Mrs. Baker wasn't looking.</li>
+          <li>Holling felt like his teacher wanted to __________ him in front of the whole class.</li>
+          <li>Holling's mother asked him to run an __________ to the store.</li>
+        </ol>
+      </div>
+
+      <div class="task-block">
+        <h3>C. Discussion / Speaking</h3>
+        <ol>
+          <li><strong>Fair or unfair?</strong> Do you think it was fair that Holling had to stay after school with Mrs. Baker? Why or why not?</li>
+          <li><strong>First impressions.</strong> What was your first impression of Mrs. Baker? Did it change by the end of the chapter?</li>
+          <li><strong>Family life.</strong> Compare Holling's family with a typical family today. What is similar? What is different?</li>
+          <li><strong>Historical context.</strong> The story is set in 1967 during the Vietnam War. How does this background affect the story so far?</li>
+          <li><strong>Prediction.</strong> What do you think will happen between Holling and Mrs. Baker in the coming months? Why?</li>
+        </ol>
+      </div>
+
+      <div class="task-block">
+        <h3>D. Creative Tasks</h3>
+        <ol>
+          <li><strong>Diary entry.</strong> Write a short diary entry from Holling's point of view after his first Wednesday with Mrs. Baker.</li>
+          <li><strong>Letter.</strong> Write a letter from Mrs. Baker to a colleague explaining why she chose to work with Holling.</li>
+          <li><strong>Character map.</strong> Draw a diagram showing Holling's relationships with: Mrs. Baker, his father, his mother, his sister, and his friends. Add one adjective to describe each relationship.</li>
+          <li><strong>Role play.</strong> Act out a conversation between Holling and his sister after he tells her about the Wednesday arrangement.</li>
+          <li><strong>Newspaper article.</strong> Write a short article for the school newspaper about "What Happens on Wednesdays at Camillo Junior High."</li>
+        </ol>
+      </div>
+
+      <div class="task-block">
+        <h3>E. Literary Analysis (for more advanced students)</h3>
+        <ol>
+          <li>Find three examples of <strong>humor</strong> in Chapter 1. What makes them funny?</li>
+          <li>How does the author use <strong>dialogue</strong> to show character? Find one exchange between Holling and Mrs. Baker and explain what it reveals about each of them.</li>
+          <li>What is the <strong>setting</strong> of the story (time and place)? How does the setting influence the events?</li>
+          <li>Find one example of <strong>foreshadowing</strong> in Chapter 1. What might it suggest about what will happen later?</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ===== SPEECH SYNTHESIS (TTS) =====
+      // Use the word's data-word attribute as the text to speak.
+      // For entries like "to assign", speak only the verb "assign".
+      function getSpeakText(word) {
+        // Strip leading "to " for verbs / expressions
+        if (word.toLowerCase().startsWith('to ')) {
+          return word.substring(3);
+        }
+        return word;
+      }
+
+      function speakWord(word, btn) {
+        if (!('speechSynthesis' in window)) {
+          alert('Sorry, your browser does not support speech synthesis.');
+          return;
+        }
+
+        // Cancel any ongoing speech
+        window.speechSynthesis.cancel();
+
+        var text = getSpeakText(word);
+        var utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+
+        // Optional: try to pick a native English voice
+        var voices = window.speechSynthesis.getVoices();
+        var preferred = voices.find(function(v) {
+          return v.lang && v.lang.indexOf('en') === 0 && /Google|Samantha|Alex|Microsoft|Zira|David/i.test(v.name);
+        });
+        if (preferred) utterance.voice = preferred;
+
+        // Visual feedback
+        if (btn) {
+          btn.style.transform = 'scale(1.25)';
+          setTimeout(function() { btn.style.transform = ''; }, 300);
+        }
+
+        window.speechSynthesis.speak(utterance);
+      }
+
+      // Attach speak handlers
+      document.querySelectorAll('.speak-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation(); // don't toggle translation when clicking speak
+          var card = btn.closest('.word-card');
+          if (card) {
+            speakWord(card.getAttribute('data-word') || card.querySelector('.word-title').textContent, btn);
+          }
+        });
+      });
+
+      // ===== TOGGLE TRANSLATION ON WORD CARD CLICK =====
+      document.querySelectorAll('.word-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          var translation = card.querySelector('.translation');
+          if (!translation) return;
+          translation.classList.toggle('visible');
+          card.classList.toggle('revealed', translation.classList.contains('visible'));
+        });
+      });
+
+      // ===== TOGGLE ALL TRANSLATIONS =====
+      var toggleAllBtn = document.getElementById('toggleAllBtn');
+      var allVisible = false;
+
+      toggleAllBtn.addEventListener('click', function() {
+        allVisible = !allVisible;
+        document.querySelectorAll('.translation').forEach(function(t) {
+          t.classList.toggle('visible', allVisible);
+        });
+        document.querySelectorAll('.word-card').forEach(function(c) {
+          c.classList.toggle('revealed', allVisible);
+        });
+        toggleAllBtn.textContent = allVisible ? '🙈 Hide all translations' : '👁 Show all translations';
+      });
+
+      // Preload voices (some browsers need this to get the full list)
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+          window.speechSynthesis.onvoiceschanged = function() {
+            window.speechSynthesis.getVoices();
+          };
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
